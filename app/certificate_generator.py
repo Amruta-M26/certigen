@@ -14,6 +14,9 @@ def generate_certificates(csv_path):
     with open(csv_path, 'r', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            if not all(key in row for key in ['Name', 'Event', 'Date']):
+                missing = [key for key in ['Name', 'Event', 'Date'] if key not in row]
+                raise ValueError(f"CSV missing required columns: {missing}")
             pdf = FPDF()
             pdf.add_page()
             pdf.set_font("Arial", size=24)

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, send_file
 import os
-from certificate_generator import generate_certificates
+from app.certificate_generator import generate_certificates
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join('app', 'static', 'uploads')
